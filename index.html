@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aroma Azul Destinos — Destinos de playa y pasadías en Playas del Este</title>
+<meta name="description" content="Descubre los destinos de playa donde muy pronto abriremos casas frente al mar, y reserva ya pasadías en piscinas particulares en Playas del Este, La Habana. Contáctanos por WhatsApp.">
+
+<!-- Fuentes: carga no bloqueante -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+
+<style>
+  :root{
+    --sand:#EAF5FA;
+    --white:#FFFFFF;
+    --deep:#005F8A;
+    --teal:#0096C7;
+    --coral:#F5A623;
+    --ink:#0B2A3B;
+    --line:rgba(0,96,199,.16);
+    --font-display:'Fraunces', serif;
+    --font-display-italic:'Fraunces', serif;
+    --font-body:'Manrope', system-ui, sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --radius:14px;
+    --container:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font:inherit; cursor:pointer; border:none; background:none;}
+  .wrap{max-width:var(--container); margin:0 auto; padding:0 1.1rem;}
+  .eyebrow{
+    font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.12em;
+    font-size:.72rem; color:var(--teal); font-weight:600;
+  }
+  h1,h2,h3{font-family:var(--font-display); color:var(--deep); line-height:1.06; font-weight:600; letter-spacing:-.01em;}
+  h1{font-size:clamp(2.3rem,6.4vw,3.7rem); font-weight:600; letter-spacing:-.02em;}
+  h1 em, h2 em{font-style:italic; font-weight:500; color:var(--teal);}
+  h2{font-size:clamp(1.6rem,4vw,2.25rem);}
+  p{color:#3A4644;}
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important; transform:none!important; transition:none!important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Header + coastline ribbon ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50; background:rgba(234,245,250,.95);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:.75rem 0;}
+  .topbar-left{display:flex; align-items:center; gap:.85rem;}
+
+  /* Marca: un solo tono de azul en todos los contextos */
+  .brand{display:flex; align-items:center; gap:.6rem;}
+  .brand-logo{
+    width:63px; height:54px; border-radius:10px; overflow:hidden; flex:0 0 auto;
+    background:var(--deep); display:flex; align-items:center; justify-content:center;
+  }
+  .brand-logo img{width:100%; height:100%; object-fit:contain; display:block;}
+  .brand-logo-placeholder{
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  }
+  .brand-logo-placeholder svg{width:20px; height:20px;}
+  .brand-text{font-family:var(--font-display); font-weight:700; font-size:.98rem; color:var(--deep); letter-spacing:.01em; line-height:1.1;}
+
+  /* Logo placeholder reutilizable en secciones internas */
+  .logo-block{
+    display:flex; align-items:center; gap:.9rem; text-decoration:none;
+  }
+  .logo-mark{
+    flex:0 0 auto; border-radius:12px; overflow:hidden; background:var(--deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .logo-mark img{width:100%; height:100%; object-fit:contain; display:block;}
+  .logo-mark-placeholder{
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  }
+  /* Instrucción visual: borde punteado cuando no hay imagen real */
+  .logo-upload-hint{
+    border:2px dashed rgba(0,96,199,.35); border-radius:12px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:.4rem; color:var(--teal); font-family:var(--font-mono); font-size:.68rem;
+    text-align:center; padding:.5rem;
+  }
+  .logo-upload-hint svg{width:22px; height:22px; stroke:var(--teal);}
+
+  /* Sello de marca (hero) */
+  .brand-seal{
+    display:flex; align-items:center; gap:1rem; margin-bottom:1.4rem;
+  }
+  .brand-seal .logo-mark{width:131px; height:112px; border-radius:16px;}
+  .brand-seal .seal-text{font-family:var(--font-display); font-size:.82rem; color:var(--deep); font-weight:600; max-width:140px; line-height:1.25;}
+
+  /* Bloque de marca en sección nosotros */
+  .about-logo-row{display:flex; align-items:center; gap:1.1rem; margin-bottom:1.4rem;}
+  .about-logo-row .logo-mark{width:122px; height:104px; border-radius:16px;}
+  .about-logo-row .about-brand-text{font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--deep); line-height:1.1;}
+  .about-logo-row .about-brand-sub{font-family:var(--font-mono); font-size:.7rem; color:var(--teal); text-transform:uppercase; letter-spacing:.08em; margin-top:.25rem;}
+  .topbar-link{display:none; font-family:var(--font-mono); font-size:.78rem; font-weight:600; color:var(--deep); opacity:.7;}
+  .topbar-link:hover{opacity:1;}
+  @media(min-width:480px){.topbar-link{display:inline-block;}}
+  .topbar-cta{
+    font-family:var(--font-mono); font-size:.78rem; font-weight:600;
+    background:var(--deep); color:var(--white); padding:.55rem .9rem; border-radius:999px;
+    display:flex; align-items:center; gap:.4rem; position:relative;
+  }
+  .ribbon{
+    display:flex; gap:0; overflow-x:auto; padding:0 0 .8rem 0; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .ribbon::-webkit-scrollbar{display:none;}
+  .ribbon-track{display:flex; align-items:flex-end; gap:1.6rem; padding-top:.3rem;}
+  .chip{
+    flex:0 0 auto; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.03em;
+    color:var(--deep); padding-bottom:.6rem; position:relative; white-space:nowrap;
+    border-bottom:3px solid transparent; opacity:.6; transition:opacity .2s, border-color .2s;
+  }
+  .chip::before{
+    content:''; position:absolute; left:50%; bottom:-3px; width:6px; height:6px; border-radius:50%;
+    background:var(--teal); transform:translate(-50%,50%); opacity:0;
+  }
+  .chip.active, .chip:hover{opacity:1; border-color:var(--teal);}
+  .chip.active::before{opacity:1;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative; overflow:hidden; padding:3rem 0 4rem;}
+  .hero-bg{
+    position:absolute; inset:0; z-index:-1;
+    background:
+      radial-gradient(60% 50% at 80% 0%, rgba(255,255,255,.5), transparent 60%),
+      linear-gradient(180deg, #C8EAFB 0%, #90CFF5 38%, var(--teal) 70%, var(--deep) 100%);
+  }
+  .hero-bg::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:46%;
+    background:linear-gradient(180deg, transparent, rgba(0,95,138,.22));
+  }
+  .hero-grid{display:grid; gap:2rem;}
+  .hero-copy{max-width:540px;}
+  .hero-copy p{font-size:1.05rem; margin-top:1rem; max-width:46ch;}
+  .hero-cta-row{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.6rem;}
+  .soon-teaser{
+    display:inline-block; margin-top:1.1rem; font-family:var(--font-mono); font-size:.76rem; color:var(--deep);
+    background:rgba(255,255,255,.6); padding:.45rem .85rem; border-radius:999px; border:1px solid rgba(14,76,92,.2);
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.3rem; border-radius:999px;
+    font-weight:600; font-size:.92rem; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--coral); color:var(--white); box-shadow:0 8px 20px -8px rgba(232,113,74,.6);}
+  .btn-ghost{background:rgba(255,255,255,.65); color:var(--deep); border:1px solid rgba(14,76,92,.25);}
+  .trust-strip{
+    margin-top:2.4rem; display:flex; flex-wrap:wrap; gap:.8rem 1.2rem;
+    font-family:var(--font-mono); font-size:.74rem; font-weight:600;
+  }
+  .trust-strip li{
+    list-style:none; display:flex; align-items:center; gap:.5rem;
+    background:rgba(0,30,55,.45); color:#fff;
+    padding:.45rem .85rem; border-radius:999px;
+    backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,.18);
+  }
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--coral); flex:0 0 auto;}
+
+  /* ---------- About / Sobre El Litoral ---------- */
+  .about{padding:3.6rem 0 1.2rem;}
+  .about-grid{display:grid; gap:2rem;}
+  @media(min-width:900px){.about-grid{grid-template-columns:1.1fr .9fr; align-items:start;}}
+  .about-copy h2{margin-top:.4rem;}
+  .about-copy p{margin-top:.95rem; font-size:1rem; max-width:54ch;}
+  .stat-card{
+    background:var(--white); border-radius:var(--radius); padding:1.5rem;
+    box-shadow:0 14px 30px -18px rgba(14,76,92,.3);
+  }
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.3rem;}
+  .stat-item .num{font-family:var(--font-mono); font-weight:700; color:var(--coral); font-size:1.6rem; display:block;}
+  .stat-item .label{font-size:.76rem; color:#4C5755; margin-top:.25rem; display:block; line-height:1.35;}
+  .pillars{display:grid; gap:1.4rem; margin-top:2.4rem;}
+  @media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr);}}
+  .pillar{display:flex; gap:.85rem; align-items:flex-start;}
+  .pillar svg{width:22px; height:22px; stroke:var(--teal); flex:0 0 auto; margin-top:.18rem;}
+  .pillar h3{font-size:1rem; color:var(--deep); font-weight:600;}
+  .pillar p{font-size:.86rem; margin-top:.25rem;}
+  .cta-banner{
+    margin-top:2.6rem; background:var(--deep); border-radius:var(--radius); padding:1.5rem 1.7rem;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem;
+  }
+  .cta-banner strong{color:#fff; display:block; font-family:var(--font-display); font-size:1.2rem; font-weight:600; margin-bottom:.25rem;}
+  .cta-banner p{color:rgba(255,255,255,.8); max-width:38ch; font-size:.92rem;}
+
+  /* ---------- Sections ---------- */
+  section.listings{padding:3.4rem 0;}
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:1.8rem; flex-wrap:wrap;}
+  .section-head p{max-width:48ch;}
+  .grid{display:grid; grid-template-columns:1fr; gap:1.4rem;}
+  @media(min-width:680px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr);}}
+
+  /* ---------- Ticket card ---------- */
+  .card{
+    background:var(--white); border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 14px 30px -18px rgba(14,76,92,.35); display:flex; flex-direction:column;
+  }
+  .card-photo{
+    height:148px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 15% 0%, rgba(255,255,255,.35), transparent 55%),
+      linear-gradient(135deg, var(--teal), var(--deep));
+  }
+  .card-photo svg{position:absolute; inset:0; width:100%; height:100%;}
+  .card-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;}
+  .badge{
+    position:absolute; top:.7rem; left:.7rem; background:rgba(255,255,255,.92); color:var(--deep);
+    font-family:var(--font-mono); font-size:.66rem; font-weight:700; letter-spacing:.03em;
+    padding:.3rem .55rem; border-radius:999px;
+  }
+  .beach-tag{
+    position:absolute; bottom:.6rem; left:.7rem; color:#fff; font-family:var(--font-mono);
+    font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; opacity:.9;
+  }
+  .seam{height:0; position:relative; border-top:2px dashed var(--line);}
+  .seam::before,.seam::after{
+    content:''; position:absolute; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--sand);
+  }
+  .seam::before{left:-10px;} .seam::after{right:-10px;}
+  .card-body{padding:1.1rem 1.1rem 1.2rem; display:flex; flex-direction:column; gap:.6rem; flex:1;}
+  .card-body h3{font-size:1.12rem;}
+  .price-row{
+    margin-top:auto; padding-top:.7rem; border-top:1px solid var(--line);
+    display:flex; align-items:flex-end; justify-content:space-between; gap:.6rem;
+  }
+  .card-btn{
+    font-family:var(--font-mono); font-size:.74rem; font-weight:700; color:var(--white);
+    background:var(--teal); padding:.55rem .85rem; border-radius:8px; white-space:nowrap;
+  }
+
+  /* ---------- How to book ---------- */
+  .how{background:var(--deep); color:var(--white); padding:3.6rem 0;}
+  .how h2{color:var(--white);}
+  .how p.lead{color:rgba(255,255,255,.7); max-width:46ch; margin-top:.6rem;}
+  .steps{display:grid; gap:1.4rem; margin-top:2.2rem;}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{border-top:1px solid rgba(255,255,255,.18); padding-top:1rem;}
+  .step .num{font-family:var(--font-mono); color:var(--teal); font-size:.8rem; font-weight:700;}
+  .step h3{color:var(--white); font-size:1.1rem; margin-top:.4rem;}
+  .step p{color:rgba(255,255,255,.68); font-size:.92rem; margin-top:.35rem;}
+
+  /* ---------- Contact ---------- */
+  .contact{padding:3.6rem 0 4.4rem;}
+  .contact-grid{display:grid; gap:2rem;}
+  @media(min-width:900px){.contact-grid{grid-template-columns:1fr 1.1fr; align-items:start;}}
+  .form-card{
+    background:var(--white); border-radius:var(--radius); padding:1.6rem; box-shadow:0 14px 30px -18px rgba(14,76,92,.3);
+  }
+  .field{margin-bottom:1rem;}
+  .field label{display:block; font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; color:var(--deep); margin-bottom:.4rem; font-weight:600;}
+  .field input, .field select, .field textarea{
+    width:100%; border:1px solid var(--line); border-radius:8px; padding:.7rem .8rem; font-family:var(--font-body);
+    font-size:.94rem; background:#FCFAF6; color:var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:2px solid var(--teal); outline-offset:1px;}
+  .field-row{display:grid; gap:1rem; grid-template-columns:1fr 1fr;}
+  .submit-row{display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.4rem;}
+  .note{font-size:.78rem; color:#6B7674; margin-top:.7rem;}
+
+  /* ---------- Footer ---------- */
+  footer{background:#012233; color:rgba(255,255,255,.72); padding:3rem 0 4.6rem;}
+  .footer-grid{display:grid; gap:2rem; margin-bottom:2.2rem;}
+  @media(min-width:760px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr;}}
+  .footer-brand .logo-mark{width:112px; height:96px; border-radius:14px; margin-bottom:.9rem;}
+  .footer-brand-name{font-family:var(--font-display); font-size:1.15rem; color:#fff; font-weight:700; margin-bottom:.35rem;}
+  .footer-brand-tagline{font-size:.82rem; color:rgba(255,255,255,.6); max-width:22ch; line-height:1.5;}
+  .footer-col h4{font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--teal); margin-bottom:.8rem; font-weight:600;}
+  .footer-col ul{list-style:none; display:flex; flex-direction:column; gap:.5rem;}
+  .footer-col a{font-size:.88rem; color:rgba(255,255,255,.72);}
+  .footer-col a:hover{color:#fff;}
+  .footer-col p{font-size:.88rem; line-height:1.6;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1); padding-top:1.3rem; display:flex; flex-wrap:wrap; gap:.6rem; justify-content:space-between; font-size:.78rem; color:rgba(255,255,255,.45);}
+  .footer-social{display:flex; gap:.7rem; align-items:center; order:1; padding-right:4rem;}
+  .footer-social a{
+    width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.18); transition:.2s;
+  }
+  .footer-social a:hover{color:#fff; border-color:rgba(255,255,255,.4);}
+  .footer-social svg{width:15px; height:15px;}
+
+  /* ---------- Floating WhatsApp ---------- */
+  .wa-float{
+    position:fixed; bottom:1.1rem; right:1.1rem; z-index:60; background:#25D366; color:#fff;
+    width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,.4);
+  }
+  .wa-float svg{width:26px; height:26px;}
+
+  /* ---------- Próximamente ---------- */
+  .soon{padding:1rem 0 3.6rem;}
+  .card--soon .card-photo{filter:grayscale(.35) brightness(.85);}
+  .soon-overlay{position:absolute; inset:0; background:rgba(14,76,92,.32); display:flex; align-items:center; justify-content:center;}
+  .soon-overlay svg{width:26px; height:26px; stroke:#fff;}
+  .soon-price{font-family:var(--font-mono); font-style:italic; color:#7C8684; font-size:.82rem;}
+
+  /* ---------- Destinos: tarjeta editorial con foto + frase ---------- */
+  .destino-photo{height:190px;}
+  .destino-phrase{font-family:var(--font-display); font-style:italic; font-size:1rem; color:var(--deep); line-height:1.4;}
+  .destino-soon{font-family:var(--font-mono); font-size:.7rem; color:var(--teal); text-transform:uppercase; letter-spacing:.05em; font-weight:600;}
+
+  /* ---------- Menú hamburguesa ---------- */
+  .hamburger-btn{width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:var(--deep); flex:0 0 auto;}
+  .hamburger-btn svg{width:22px; height:22px;}
+  .nav-overlay{
+    position:fixed; inset:0; z-index:92; background:rgba(14,76,92,.55);
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .nav-overlay.open{opacity:1; pointer-events:auto;}
+  .nav-drawer{
+    position:fixed; top:0; left:0; bottom:0; width:100%; max-width:340px; background:var(--white);
+    transform:translateX(-100%); transition:transform .3s ease; display:flex; flex-direction:column;
+    box-shadow:12px 0 30px -10px rgba(0,0,0,.25);
+  }
+  .nav-overlay.open .nav-drawer{transform:none;}
+  .nav-drawer-header{display:flex; align-items:center; justify-content:space-between; padding:1.2rem 1.4rem; border-bottom:1px solid var(--line);}
+  .nav-menu{padding:.6rem 0; overflow-y:auto; flex:1;}
+  .nav-link{display:block; padding:.95rem 1.4rem; font-family:var(--font-mono); font-size:.86rem; font-weight:600; color:var(--deep);}
+  .nav-link:hover{background:var(--sand);}
+  .nav-group-toggle{
+    width:100%; display:flex; align-items:center; justify-content:space-between; padding:.95rem 1.4rem;
+    font-family:var(--font-mono); font-size:.86rem; font-weight:600; color:var(--deep); text-align:left;
+  }
+  .nav-group-toggle .chev{width:16px; height:16px; stroke:var(--teal); transition:transform .25s ease; flex:0 0 auto;}
+  .nav-group.open .chev{transform:rotate(180deg);}
+  .nav-submenu{max-height:0; overflow:hidden; transition:max-height .3s ease; background:var(--sand);}
+  .nav-group.open .nav-submenu{max-height:420px;}
+  .nav-sublink{
+    width:100%; display:flex; align-items:baseline; gap:.4rem; text-align:left;
+    padding:.65rem 1.4rem .65rem 2.2rem; font-size:.84rem; color:#3A4644;
+  }
+  .nav-sublink:hover{color:var(--coral);}
+  .nav-sub-meta{font-size:.72rem; color:#8A9492;}
+
+  .card--highlight{box-shadow:0 0 0 3px var(--coral), 0 14px 30px -18px rgba(14,76,92,.4)!important; transition:box-shadow .3s ease;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap topbar">
+    <div class="topbar-left">
+      <button class="hamburger-btn" id="menuOpenBtn" type="button" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="brand">
+      <!-- LOGO 1 de 5: se llena automáticamente desde CONFIG.logo (ver el <script> al final del archivo) -->
+      <div class="brand-logo logo-upload-hint" id="headerLogo" title="Logo de Aroma Azul Destinos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Menú hamburguesa -->
+<div class="nav-overlay" id="navOverlay">
+  <aside class="nav-drawer" role="dialog" aria-modal="true" aria-label="Menú">
+    <div class="nav-drawer-header">
+      <div class="brand">
+        <!-- LOGO 2 de 5: se llena automáticamente desde CONFIG.logo -->
+        <div class="brand-logo logo-upload-hint" id="navLogo" title="Logo de Aroma Azul Destinos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+      </div>
+      <button class="modal-close" id="navClose" type="button" aria-label="Cerrar" style="position:static;">✕</button>
+    </div>
+    <nav class="nav-menu">
+      <a class="nav-link" href="#nosotros" data-navlink>Nosotros</a>
+
+      <div class="nav-group" id="navGroupDestinos">
+        <button class="nav-group-toggle" type="button" data-toggle="navGroupDestinos">
+          <span>Destinos</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-submenu" id="navSubDestinos"></div>
+      </div>
+
+      <a class="nav-link" href="#piscinas" data-navlink>Pasadías</a>
+
+      <a class="nav-link" href="#excursiones" data-navlink>Excursiones</a>
+      <a class="nav-link" href="#contacto" data-navlink>Contáctenos</a>
+    </nav>
+  </aside>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="brand-seal">
+        <!-- LOGO 3 de 5: se llena automáticamente desde CONFIG.logo -->
+        <div class="logo-mark logo-upload-hint" id="heroLogo" style="width:131px;height:112px;border-radius:16px;" title="Logo Aroma Azul Destinos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+      </div>
+      <p class="eyebrow">La Habana</p>
+      <h1>Hay días que <em>merecen algo más</em> que rutina.</h1>
+      <p>Porque un solo día puede cambiar el ritmo de la semana. Y algunos recuerdos... conservan su Aroma Azul.</p>
+      <p>Casas frente al mar, pasadías y experiencias seleccionadas para convertir cualquier día en un recuerdo inolvidable.<p>
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="#destinos">✨ Descubrir nuestros destinos</a>
+        <a class="btn btn-ghost" href="#piscinas">🌊 Conocer más</a>
+      </div>
+      <a class="soon-teaser" href="#excursiones">🌴 Próximamente: excursiones a los mejores destinos de Cuba →</a>
+    </div>
+    <ul class="trust-strip">
+      <li><span class="dot"></span>Experiencias cuidadosamente seleccionadas</li>
+      <li><span class="dot"></span>Atención personalizada para cada cliente</li>
+      <li><span class="dot"></span>Nuevos destinos y servicios en crecimiento</li>
+    </ul>
+  </div>
+</section>
+
+<section class="about reveal" id="nosotros">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="about-logo-row">
+          <!-- LOGO 4 de 5: se llena automáticamente desde CONFIG.logo -->
+          <div class="logo-mark logo-upload-hint" id="aboutLogo" style="width:122px;height:104px;border-radius:16px;" title="Logo Aroma Azul Destinos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div>
+            <div class="about-brand-sub">Agencia de viajes</div>
+          </div>
+        </div>
+        <p class="eyebrow">Sobre Aroma Azul Destinos</p>
+        <h2>Más que una agencia de viajes, somos tu aliado para cada experiencia.</h2>
+        <p>En Aroma Azul Destinos creemos que cada viaje comienza mucho antes de llegar al destino. Comienza con la confianza de saber que cada detalle ha sido pensado para que solo tengas que disfrutar.</p>
+        <p>Somos una agencia con una visión clara: ofrecer experiencias cuidadosamente seleccionadas, atención cercana y un servicio transparente que acompañe a nuestros clientes antes, durante y despues del viaje.</p>
+        <p>Aspiramos a construir relaciones duraderas, porque para nosotros una reserva no es el final del camino, sino el inicio de una historia que queremos compartir durante muchos años.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-grid">
+          <div class="stat-item"><span class="num">100%</span><span class="label">Confianza y compromiso</span></div>
+          <div class="stat-item"><span class="num">24/7</span><span class="label">Acompañamiento cercano</span></div>
+          <div class="stat-item"><span class="num">Único</span><span class="label">Experiencias pensadas para ti</span></div>
+          <div class="stat-item"><span class="num">Disfrute</span><span class="label">Destinos llenos de encanto</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div><h3>Confianza desde el primer contacto</h3><p>Información clara, atención cercana y propuestas pensadas para que tomes la mejor decisión.</p></div>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div><h3>Te acompañamos en cada etapa</h3><p>No solo buscamos reservar una experiencia, queremos que disfrutes el proceso con tranquilidad.</p></div>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div><h3>Creamos relaciones, no solo reservas</h3><p>Con nosotros, cada persona, forma parte de una comunidad que crece basada en la confianza y buenas experiencias.</p></div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <div>
+        <strong>¿Listo para planificar tu próxima experiencia?</strong>
+        <p>Cuéntanos qué buscas y te armamos la propuesta perfecta, muy pronto te ayudaremos a crear momentos inolvidables.</p>
+      </div>
+      <a class="btn btn-primary" id="firstTimeCta" href="#contacto">Hablar con nosotros</a>
+    </div>
+  </div>
+</section>
+
+<section class="listings" id="destinos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Destinos · Muy pronto</p>
+        <h2>Casas frente al mar, llegando pronto a estos destinos</h2>
+        <p>Estamos preparando una selección de casas en las playas más lindas de La Habana. Enamórate del lugar y escríbenos para ser de los primeros en reservar cuando abramos.</p>
+      </div>
+    </div>
+    <div class="grid" id="destinosGrid"></div>
+  </div>
+</section>
+
+<section class="listings" id="piscinas" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Pasadías · Muy pronto</p>
+        <h2>Pasadías en piscinas</h2>
+        <p>Estamos preparando pasadías en piscinas para grupos, familias y cumpleaños. Muy pronto podrás reservarlas aquí mismo.</p>
+      </div>
+    </div>
+    <div class="grid" id="piscinasGrid"></div>
+  </div>
+</section>
+
+<section class="soon" id="excursiones">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Próximamente</p>
+        <h2>Excursiones a los mejores destinos de Cuba</h2>
+        <p>Estamos cerrando alianzas para ofrecerte excursiones a los lugares más lindos del país. Pronto podrás reservarlas aquí mismo, con el mismo trato directo de siempre.</p>
+      </div>
+    </div>
+    <div class="grid" id="excursionesGrid"></div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--teal)">¿Por qué elegirnos?</p>
+    <h2>Porque cada experiencia merece comenzar con confianza</h2>
+    <p class="lead">Cada escapada tiene un motivo: descansar, compartir o crear recuerdos, buscamos eso para ti</p>
+    <div class="steps">
+      <div class="step"><span class="icono">💎</span><h3>Atención personalizada durante todo el proceso</h3><p>Estamos para escucharte y ayudarte a elegir mejor.</p></div>
+      <div class="step"><span class="num">🏖️</span><h3>Propuestas adaptadas a tus necesidades</h3><p>Buscamos lugares que aporten algo especial.</p></div>
+      <div class="step"><span class="num">❤️</span><h3>Comprometidos contigo</h3><p>Trabajamos para que planificar sea sencillo y disfrutar lo más importante.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Contáctenos</p>
+      <h2>¿En qué podemos ayudarte?</h2>
+      <p style="margin-top:.6rem;">Ya sea para resolver una duda, conocer más sobre nuestros servicios o colaborar con Aroma Azul Destinos, no dudes en ponerte en contacto con nosotros.</p>
+      <p class="note">Disponibles los 7 días de la semana, de 8:00 am a 5:00 pm.</p>
+    </div>
+    <form class="form-card" id="bookingForm">
+      <div class="field"><label for="nombre">Nombre</label><input id="nombre" required placeholder="Tu nombre"></div>
+      <div class="field"><label for="mensaje">Mensaje</label><textarea id="mensaje" rows="3" placeholder="Cuéntanos qué buscas"></textarea></div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary">Enviar por WhatsApp</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <!-- Columna 1: Logo y tagline -->
+      <div class="footer-brand">
+        <!-- LOGO 5 de 5: se llena automáticamente desde CONFIG.logo -->
+        <div class="logo-mark logo-upload-hint" id="footerLogo" style="width:112px;height:96px;border-radius:14px;margin-bottom:.9rem;border:2px dashed rgba(0,150,199,.4);" title="Logo Aroma Azul Destinos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,150,199,.9)" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <p class="footer-brand-tagline">Más que una agencia de viajes, somos tu aliado para cada experiencia.</p>
+      </div>
+
+      <!-- Columna 2: Navegación -->
+      <div class="footer-col">
+        <h4>Explora</h4>
+        <ul>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#destinos">Destinos de playa</a></li>
+          <li><a href="#piscinas">Pasadías en piscina</a></li>
+          <li><a href="#excursiones">Excursiones</a></li>
+          <li><a href="#contacto">Contáctenos</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto -->
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>WhatsApp: +53 5 483 3990</p>
+        <p style="margin-top:.5rem;">Email: aromaazuldestinos@gmail.com</p>
+        <p style="margin-top:.5rem;">La Habana, Cuba</p>
+        <p style="margin-top:.5rem;">Atención: todos los días<br>8:00 am – 5:00 pm</p>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aroma Azul Destinos · Todos los derechos reservados</span>
+      <div class="footer-social">
+        <a href="#" id="footerFacebook" target="_blank" rel="noopener" aria-label="Facebook de Aroma Azul Destinos">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.25-1.5 1.55-1.5H16.5V4.3c-.28-.04-1.23-.12-2.34-.12-2.32 0-3.91 1.42-3.91 4.02V10.5H8v3h2.25V21h3.25z"/></svg>
+        </a>
+        <a href="#" id="footerInstagram" target="_blank" rel="noopener" aria-label="Instagram de Aroma Azul Destinos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+      </div>
+      <span>Diseñado con ♥ para los viajeros de Cuba</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.5C8.4 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3 .9.9-2.9-.2-.3C3.9 15 3.3 13.5 3.3 12 3.3 7.2 7.2 3.3 12 3.3S20.7 7.2 20.7 12 16.8 20.2 12 20.2zm5-6.3c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+(function(){
+  // ===== CONFIG: edita aquí número, precios, transporte, imágenes y listados =====
+  // Para poner una foto real, pega la URL en "img" (ej: 'https://miweb.com/casa1.jpg').
+  // Si "img" queda vacío (''), se muestra un degradado de color en su lugar.
+  // Cada casa tiene: habitaciones (número), vista (texto libre), piscina (true/false) y desc (descripción corta).
+  const CONFIG = {
+    whatsapp: '54833990', // EDITAR: número real de WhatsApp
+    facebook: 'https://www.facebook.com/share/1BU9gFDhEz/', // EDITAR: URL real de Facebook
+    instagram: 'https://www.instagram.com/aromaazuldestinos?igsh=MTNtZTF6NHlrOTZjbw==', // EDITAR: URL real de Instagram
+
+    // LOGO: pega aquí la URL de tu logo (ej: 'https://miweb.com/logo.png') y aparecerá
+    // automáticamente en los 5 lugares del sitio: encabezado, menú hamburguesa, portada,
+    // sección "Nosotros" y pie de página. Si lo dejas vacío (''), se muestra el ícono azul de muestra.
+    logo: 'img/logo1.jpg',
+
+    lugares: [
+      // "img": pega aquí la URL de una foto real del destino para reemplazar el degradado.
+      {id:'bacuranao', name:'Bacuranao', img:'img/bacuranao.jpg', phrase:'A minutos de La Habana, un rincón de arena tranquila donde el tiempo se detiene apenas llegas.', gradient:'linear-gradient(135deg,#90CFF5,#0096C7)'},
+      {id:'tarara', name:'Tarará', img:'img/tarara.jpg', phrase:'Antiguas villas frente al mar y una marina con historia: el escenario ideal para despertar con el sonido de las olas.', gradient:'linear-gradient(135deg,#0096C7,#005F8A)'},
+      {id:'megano', name:'Mégano', img:'img/megano.png', phrase:'Arena fina, aguas en calma y atardeceres que se quedan grabados en la memoria.', gradient:'linear-gradient(135deg,#FDD873,#F5A623)'},
+      {id:'santa-maria', name:'Santa María', img:'img/santa maria.png', phrase:'La playa más vibrante de la zona: sol, movimiento y la energía perfecta para desconectar en compañía.', gradient:'linear-gradient(135deg,#FDECB0,#F5A623)'},
+      {id:'boca-ciega', name:'Boca Ciega', img:'img/boca ciega.png', phrase:'Casas amplias entre el silencio residencial y el mar, ideales para reunir a toda la familia bajo un mismo techo.', gradient:'linear-gradient(135deg,#005F8A,#0B2A3B)'},
+      {id:'guanabo', name:'Guanabo', img:'img/guanabo.jpg', phrase:'El pueblo con más vida de Playas del Este, donde el mar, la música y los restaurantes están a pocos pasos de casa.', gradient:'linear-gradient(135deg,#0096C7,#F5A623)'}
+    ],
+    // Pasadías: servicio que ofreceremos próximamente. No se asocia a un lugar concreto, solo se refleja el servicio.
+    // "img": pega aquí la URL de una foto real para reemplazar el degradado de color. Si la dejas vacía (''), se ve el degradado.
+    piscinas: [
+      {name:'Acceso privado', img:'img/piscina1.jpg', desc:'Una piscina particular solo para tu grupo, sin compartir el agua con desconocidos ni horarios ajenos.'},
+      {name:'Parrillada y música incluidas', img:'img/piscina2.jpg', desc:'Perfecto para cumpleaños y celebraciones: comida, buena música y espacio de sobra para disfrutar.'},
+      {name:'Pensado para grupos y familias', img:'img/piscina3.png', desc:'Zonas cómodas para los más pequeños y tranquilidad para que los adultos también descansen.'}
+    ],
+    // "img": pega aquí la URL de una foto real de la excursión para reemplazar el degradado. Si la dejas vacía (''), se ve el degradado.
+    excursiones: [
+      {name:'Varadero en un día', destino:'Varadero', img:'img/varadero.png', desc:'Arena blanca y aguas turquesas en la playa más famosa de Cuba, con tiempo libre para disfrutar del mar y el sol.'},
+      {name:'Viñales en un día', destino:'Viñales', img:'img/viñales.png', desc:'Valle, plantaciones de tabaco y paisajes que parecen pintados a mano.'},
+      {name:'Trinidad colonial', destino:'Trinidad', img:'img/trinidad.jpg', desc:'Calles empedradas y arquitectura colonial declarada Patrimonio de la Humanidad.'}
+    ]
+  };
+
+
+  function pscinaCardHTML(item){
+    const waMsg = `Hola, me interesa el servicio de pasadías en piscinas particulares ("${item.name}") — Aroma Azul Destinos.`;
+    const waHref = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+    const photoHTML = item.img
+      ? `<img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;">`
+      : `<div class="soon-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3"/><path d="M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></svg>
+        </div>`;
+    return `
+    <article class="card card--soon reveal">
+      <div class="card-photo" style="background:linear-gradient(135deg,#3FA7A0,#005F8A)">
+        ${photoHTML}
+        <span class="badge" style="background:var(--deep); color:#fff;">Muy pronto</span>
+      </div>
+      <div class="seam"></div>
+      <div class="card-body">
+        <h3>${item.name}</h3>
+        <p style="font-size:.86rem; color:#4C5755;">${item.desc}</p>
+        <div class="price-row">
+          <div class="soon-price">Servicio en preparación</div>
+          <a class="card-btn" href="${waHref}" target="_blank" rel="noopener">Contáctenos</a>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function destinoCardHTML(place){
+    const waMsg = `Hola, me encantó ${place.name} y quiero recibir información apenas abran las casas en ese destino — Aroma Azul Destinos.`;
+    const waHref = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+    const photoHTML = place.img
+      ? `<img src="${place.img}" alt="${place.name}" loading="lazy" decoding="async">`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.4" stroke-linecap="round" style="position:absolute; inset:0; width:100%; height:100%; padding:2.2rem;"><path d="M2 17c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><circle cx="17" cy="6" r="2.4"/></svg>`;
+    return `
+    <article class="card reveal" id="card-${place.id}">
+      <div class="card-photo destino-photo" style="background:${place.gradient}">
+        ${photoHTML}
+        <span class="badge">Muy pronto</span>
+        <span class="beach-tag">${place.name}</span>
+      </div>
+      <div class="seam"></div>
+      <div class="card-body">
+        <h3>${place.name}</h3>
+        <p class="destino-phrase">"${place.phrase}"</p>
+        <div class="price-row">
+          <span class="destino-soon">Abriendo pronto</span>
+          <a class="card-btn" href="${waHref}" target="_blank" rel="noopener">Contáctenos</a>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function soonCardHTML(item){
+    const waMsg = `Hola, quiero recibir información sobre la excursión "${item.name}" apenas esté disponible — Aroma Azul Destinos.`;
+    const waHref = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+    const photoHTML = item.img
+      ? `<img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;">`
+      : `<div class="soon-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        </div>`;
+    return `
+    <article class="card card--soon reveal">
+      <div class="card-photo" style="background:linear-gradient(135deg,#7EC8E3,#005F8A)">
+        ${photoHTML}
+        <span class="badge" style="background:var(--deep); color:#fff;">Próximamente</span>
+        <span class="beach-tag">${item.destino}</span>
+      </div>
+      <div class="seam"></div>
+      <div class="card-body">
+        <h3>${item.name}</h3>
+        <p style="font-size:.86rem; color:#4C5755;">${item.desc}</p>
+        <div class="price-row">
+          <div class="soon-price">Precio próximamente</div>
+          <a class="card-btn" href="${waHref}" target="_blank" rel="noopener">Contáctenos</a>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  // ===== Logo: coloca CONFIG.logo (arriba) y se aplica automáticamente en los 5 lugares del sitio =====
+  function aplicarLogo(){
+    if(!CONFIG.logo) return; // sin logo definido, se mantiene el ícono azul de muestra
+    ['headerLogo','navLogo','heroLogo','aboutLogo','footerLogo'].forEach(id => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.remove('logo-upload-hint');
+      el.style.border = 'none';
+      el.innerHTML = `<img src="${CONFIG.logo}" alt="Logo Aroma Azul Destinos">`;
+    });
+  }
+  aplicarLogo();
+
+  const piscinasGrid = document.getElementById('piscinasGrid');
+  const excursionesGrid = document.getElementById('excursionesGrid');
+  CONFIG.piscinas.forEach(p => piscinasGrid.insertAdjacentHTML('beforeend', pscinaCardHTML(p)));
+  CONFIG.excursiones.forEach(x => excursionesGrid.insertAdjacentHTML('beforeend', soonCardHTML(x)));
+
+  // ===== Destinos: galería de playas con foto, frase y contacto directo por WhatsApp =====
+  function renderDestinos(){
+    const grid = document.getElementById('destinosGrid');
+    grid.innerHTML = '';
+    CONFIG.lugares.forEach(p => grid.insertAdjacentHTML('beforeend', destinoCardHTML(p)));
+  }
+
+  renderDestinos();
+
+  // ===== Menú hamburguesa =====
+  const navOverlay = document.getElementById('navOverlay');
+  function openNav(){ navOverlay.classList.add('open'); }
+  function closeNav(){ navOverlay.classList.remove('open'); }
+  document.getElementById('menuOpenBtn').addEventListener('click', openNav);
+  document.getElementById('navClose').addEventListener('click', closeNav);
+  navOverlay.addEventListener('click', e => { if(e.target === navOverlay) closeNav(); });
+
+  // Submenú Destinos: un enlace por playa, resalta la tarjeta correspondiente al llegar
+  const navSubDestinos = document.getElementById('navSubDestinos');
+  CONFIG.lugares.forEach(place => {
+    navSubDestinos.insertAdjacentHTML('beforeend', `<button class="nav-sublink" type="button" data-destino="${place.id}">${place.name}</button>`);
+  });
+
+  function highlightCard(id){
+    const el = document.getElementById('card-' + id);
+    if(!el) return;
+    el.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+    el.classList.add('card--highlight');
+    setTimeout(() => el.classList.remove('card--highlight'), 2200);
+  }
+
+  // Acordeón: abre un grupo (Casas o Piscinas) a la vez
+  document.querySelectorAll('.nav-group-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = document.getElementById(btn.dataset.toggle);
+      const wasOpen = group.classList.contains('open');
+      document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+      if(!wasOpen) group.classList.add('open');
+    });
+  });
+
+  // Cerrar el menú al elegir cualquier enlace, lugar o piscina
+  document.querySelectorAll('.nav-link, .nav-sublink').forEach(el => {
+    el.addEventListener('click', () => closeNav());
+  });
+
+  // Resaltar la tarjeta de destino correspondiente al elegirla desde el menú
+  document.body.addEventListener('click', e => {
+    const destinoBtn = e.target.closest('[data-destino]');
+    if(destinoBtn) highlightCard(destinoBtn.dataset.destino);
+  });
+
+  // Formulario de contacto general -> WhatsApp
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const mensaje = document.getElementById('mensaje').value || 'Quisiera más información.';
+    const text = `Hola, soy ${nombre}. ${mensaje}`;
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+  });
+
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeNav(); });
+
+  const waMainHref = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent('Hola, quiero información sobre destinos y pasadías en Playas del Este — Aroma Azul Destinos.')}`;
+  document.getElementById('waFloat').href = waMainHref;
+  document.getElementById('footerFacebook').href = CONFIG.facebook;
+  document.getElementById('footerInstagram').href = CONFIG.instagram;
+
+  const firstTimeCta = document.getElementById('firstTimeCta');
+  if(firstTimeCta){
+    firstTimeCta.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent('Hola, quiero información sobre los servicios de Aroma Azul Destinos.')}`;
+
+    firstTimeCta.target = '_blank';
+    firstTimeCta.rel = 'noopener';
+  }
+
+  // Reveal on scroll
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+})();
+</script>
+</body>
+</html>
